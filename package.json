@@ -1,0 +1,30 @@
+{
+  "name": "unveil_ip",
+  "version": "1.0.0",
+  "description": "API to provide information about an IP\u001b[D\u001b[Dspecific IP",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pamcuellas/unveil_ip.git"
+  },
+  "author": "Paulo Cuellas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pamcuellas/unveil_ip/issues"
+  },
+  "homepage": "https://github.com/pamcuellas/unveil_ip#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "express-sanitizer": "^1.0.5",
+    "mysql2": "^1.7.0",
+    "passport": "^0.4.0",
+    "sequelize": "^5.17.1"
+  }
+}
