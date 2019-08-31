@@ -15,7 +15,7 @@ $(document).ready( function(){ 	// Wait until DOM be ready to start.
 		});
 	});
 
-	$('#ip').focus();
+	// $('#ip').focus();
 });
 
 let fillLis =  result => {
