@@ -9,7 +9,7 @@ body{
 }
 
 h1, h2 {
-	letter-spacing: 1.5px;
+	letter-spacing: 1.4px;
 }
 
 ul {
@@ -56,23 +56,26 @@ span {
 	font-family: 'Raleway', serif;
 	letter-spacing: 1.7px;
 	outline: 0;
+	font-size: unset;
 }
 
 #btn:hover {
 	background-color: #3c3760; 
 	color: white;
 	cursor: pointer;
+	font-weight: 200;
+	transition-duration: 0.5s;
 }
 
 
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
 	
 	h1 {
-		font-size: 1.5em;
+		font-size: 1.6em;
 	} 
 	h2 {
-		font-size: 1.1em;
+		font-size: 1.2em;
 	}
 
 

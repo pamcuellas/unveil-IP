@@ -1,6 +1,7 @@
 const express 		= require('express');
 const bodyParser 	= require('body-parser');
 const app   		= express();
+app.use("/public", express.static('public')); 
 // Test DB connection.      
 const db 			= require("./models"); 
 app.use(bodyParser.urlencoded({extended: true}));
