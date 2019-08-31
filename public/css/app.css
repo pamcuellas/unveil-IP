@@ -2,32 +2,25 @@ html, body{
 	height: 100%;
 }
 body{
-	font-family: 'Lora', serif;
+	font-family: 'Kurale', serif;
 	background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
 	background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 	color: #e5ccff;
 }
 
-h1, h2 {
-	letter-spacing: 1.4px;
-}
-
 li {
 	color: #e5ccff;
-	font-weight: 100;
 }
 
 span {
 	color: white ;
-	font-size: 18px;
 }
 
 .container {
 	height: 90%;
 }
 
-#ip {
-	font-family: 'Krub', serif;
+#error-msg {
 	font-size: 20px;
 	background: none;
 	border: none;
@@ -36,31 +29,49 @@ span {
 	color: #cecece; 
 }
 
+.ip-element {
+	font-family: 'Krub', serif;
+	font-size: 1rem;
+	background: none;
+	border: none;
+	border-bottom: 1px solid #635b9e;
+	outline: none;
+	color: #cecece; 
+	width: 40px;    
+
+}
+.ip-numbers {
+	border: none;
+}
+
+
 #btn {
 	padding-left: 40px;
 	padding-right: 40px;
 	height: 35px;
-	font-weight: bolder;
 	color: #3c3760;
 	border-radius: 25px;
 	background-color: #e5ccff;
 	border: 2px solid  #e5ccff;
 	margin-top: 20px;
-	font-family: 'Raleway', serif;
 	letter-spacing: 1.7px;
 	outline: 0;
-	font-size: unset;
+	font-weight: bolder;
 }
 
 #btn:hover {
 	background-color: #3c3760; 
 	color: white;
 	cursor: pointer;
-	font-weight: 200;
 	transition-duration: 0.5s;
+	font-weight: unset;
 }
 
 
+div {    
+	border: 1px solid gray;    
+	display: inline-block;    
+}  
 
 @media screen and (max-width: 450px) {
 	
