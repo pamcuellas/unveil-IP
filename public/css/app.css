@@ -12,10 +12,6 @@ h1, h2 {
 	letter-spacing: 1.4px;
 }
 
-ul {
-		margin-bottom: 40px;
-}
-
 li {
 	color: #e5ccff;
 	font-weight: 100;
@@ -33,13 +29,10 @@ span {
 #ip {
 	font-family: 'Krub', serif;
 	font-size: 20px;
-	text-align: center;
-	width: 100%;
 	background: none;
 	border: none;
 	border-bottom: 1px solid #635b9e;
 	outline: none;
-	padding: 5px;
 	color: #cecece; 
 }
 
@@ -57,6 +50,7 @@ span {
 	letter-spacing: 1.7px;
 	outline: 0;
 	font-size: unset;
+	padding-bottom: 1.5rem;
 }
 
 #btn:hover {
