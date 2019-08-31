@@ -30,5 +30,5 @@ let fillLis =  result => {
 	$(".time"	).text(result.time_zone); 
 	$(".from"	).text(result.ip_from); 
 	$(".to"		).text(result.ip_to); 
-	$('#ip'		).focus();
+	// $('#ip'		).focus();
 }	
