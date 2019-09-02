@@ -89,5 +89,9 @@ div {
 		font-size: 1.2em;
 	}
 
+	.ip2location {
+    	letter-spacing: 0.015rem;
+	}
+
 
 }
