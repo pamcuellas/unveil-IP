@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 require('dotenv').config();//instatiate environment variables
 
 let CONFIG = { app:{}, db:{} }; //Make this global to use all over the application

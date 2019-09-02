@@ -67,6 +67,13 @@ span {
 	font-weight: unset;
 }
 
+.ip2location {
+	letter-spacing: 0.06rem;
+}
+
+.ip2location a {
+	color: inherit;
+}
 
 div {    
 	border: 1px solid gray;    

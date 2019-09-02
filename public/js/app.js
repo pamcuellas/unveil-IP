@@ -97,7 +97,7 @@ let ipToSearch= "";
 
 	let getCurrIP = () => {  
 			let ip  = $('#ip01').val() + "." + $('#ip02').val()  + "." + $('#ip03').val() + "." + $('#ip04').val(); 
-			ip = ip.replace("..",".").replace("..",".");
+			ip = ip.replace("...","").replace("..","");
 			return ip;
 		};
 
