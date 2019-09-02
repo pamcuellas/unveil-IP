@@ -69,10 +69,11 @@ span {
 
 .ip2location {
 	letter-spacing: 0.06rem;
+	color: #e5ccff;
 }
 
 .ip2location a {
-	color: inherit;
+	color: #e5ccff;
 }
 
 div {    
