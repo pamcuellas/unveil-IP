@@ -8,6 +8,8 @@ let ipToSearch= "";
 		if (checkIPs()) {
 			ipToSearch = getCurrIP();
 			clearFields();
+			$("#error-msg").attr("style","color:#1e90ff");
+			$("#error-msg").html("Searching IP " + ipToSearch + " ...");
 			$.post("/search/ip", { ip: ipToSearch })
 			.then( (data) => {
 				fillLis( data[0] );
@@ -34,10 +36,12 @@ let ipToSearch= "";
 		$(".from"	).text(result.ip_from); 
 		$(".to"		).text(result.ip_to);
 		$("#error-msg").html("");
+		$("#error-msg").attr("style","color:#e8a0b7");
 		$("#ip01").focus();   
 	}
 
 	let clearFields = ( ) => {
+		$(".ip"		).text("");
 		$(".ccode"	).text(""); 
 		$(".cname"	).text(""); 
 		$(".region" ).text(""); 
@@ -52,7 +56,6 @@ let ipToSearch= "";
 		$("#ip02"	).val("");
 		$("#ip03"	).val("");
 		$("#ip04"	).val(""); 
-		$("#error-msg").html("Searching IP " + ipToSearch + " ...");
 	}
 
 	$(".ip-element").keyup(function ( ) { 
