@@ -92,7 +92,11 @@ div {
 
 	.ip2location {
     	letter-spacing: 0.015rem;
+    	padding-bottom: 1rem;
 	}
 
+	.container-fluid {
+		padding-top: 2.5rem!important;
+	}
 
 }
