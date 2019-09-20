@@ -12,3 +12,6 @@ Fontawesome,
 MySQL, 
 Heroku hosting the webpage, 
 and DigitalOcean hosting the database.
+
+### This SPA is available online on the URL below.
+https://seek-ip.herokuapp.com
