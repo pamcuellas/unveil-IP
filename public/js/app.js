@@ -53,8 +53,8 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 				color: "purple",
 				fillColor: '#ff1d59',
 				radius: 50000
-			} ).bindPopup( 
-							"<h6 style='font-weight: bold; text-align:center;'>" + result.city_name + "</h6>" +
+			} ).bindPopup(
+							"<h6 style='font-weight: bold; text-align:center;' onfocus='blur();'>" + result.city_name + "</h6>" +
 							"<hr style='margin: 2px'>" +
 							"<span>Country: " + result.country_code + " - "  + result.country_name + "</span><br>" +
 							"<span>Region: " + result.region_name + "</span><br>" + 
