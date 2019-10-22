@@ -49,9 +49,9 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 			ipMark.push(  L.circle(coordinates, {
 				stroke: true,
 				fillOpacity: 0.7,
-				weight: 1,
-				color: "white",
-				fillColor: 'purple',
+				weight: 2,
+				color: "purple",
+				fillColor: '#ff1d59',
 				radius: 50000
 			} ).bindPopup( 
 							"<h6 style='font-weight: bold; text-align:center;'>" + result.city_name + "</h6>" +
