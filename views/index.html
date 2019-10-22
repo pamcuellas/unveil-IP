@@ -26,26 +26,28 @@
 <body>
 
 	<div class="container-fluid h-100 pt-4 d-flex flex-column align-items-center align-content-around">
-		<h2 class="text-center mb-4"><span class="fas fa-user-secret fa-fw fa-lg"></span> Welcome to the Unveil IP web page!</h2>
+		<h3 class="text-center mb-4"><span class="fas fa-user-secret fa-fw fa-lg"></span> Welcome to the Unveil IP web page!</h3>
 		<!-- The map area -->
-		<div id="map"></div>
+		<div class="w-100 d-flex justify-content-center">
+			<div id="map"></div>
+			<!-- Leaflet JavaScript -->
+			<script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+			<!-- Our Key to Leaflet -->
+			<script src="./public/js/config.js"></script>
+		</div>		
 
-		<!-- Leaflet JavaScript -->
-		<script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
-		<!-- Our Key to Leaflet -->
-		<script src="./public/js/config.js"></script>
-
-		<div class="ip-numbers mt-3">
-			<label>Type the IP here:</label> 
-		    <input type="text" maxlength="3" id="ip01" class="ip-element text-center" value="198"/>.    
-		    <input type="text" maxlength="3" id="ip02" class="ip-element text-center" value="55"/>.    
-		    <input type="text" maxlength="3" id="ip03" class="ip-element text-center" value="49"/>.    
-		    <input type="text" maxlength="3" id="ip04" class="ip-element text-center" value="89"/>    
-		</div> 
-
-		<span class="text-center w-100 pb-3" id="error-msg"></span>
-		<input type="button" id="btn" value="Unveil IP">
-		<span class="ip2location text-center pt-4"><small>This website includes IP2Location LITE data available from  <a href="https://www.ip2location.com" target="_blank">https://www.ip2location.com.</a></small></span>	
+		<div class="btn-ip w-75 mt-3">
+			<div class="ip-numbers mt-3">
+				<label>Type the IP here:</label> 
+				<input type="text" maxlength="3" id="ip01" class="ip-element text-center" value="198"/>.    
+				<input type="text" maxlength="3" id="ip02" class="ip-element text-center" value="55"/>.    
+				<input type="text" maxlength="3" id="ip03" class="ip-element text-center" value="49"/>.    
+				<input type="text" maxlength="3" id="ip04" class="ip-element text-center" value="89"/>    
+			</div> 
+			<input type="button" id="btn" value="Unveil IP">
+		</div>	
+		<span class="text-center w-100 pt-3" id="error-msg"></span>
+		<span class="ip2location text-center pt-2"><small>This website includes IP2Location LITE data available from  <a href="https://www.ip2location.com" target="_blank">https://www.ip2location.com.</a></small></span>	
 	</div>
 	<script type="text/javascript" src="./js/app.js"></script>
 </body>
