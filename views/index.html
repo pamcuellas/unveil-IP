@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Unveil IP</title>
-
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -17,6 +16,8 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Abhaya+Libre:800|Corben|Croissant+One|Kurale|Libre+Caslon+Text:700|Literata:700|Sevillana|Source+Serif+Pro:700|Manjari:100|Quicksand|Sree+Krushnadevaraya&amp;display=swap" rel="stylesheet">
 
+	<!-- Leaflet CSS -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css">
 
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -24,30 +25,22 @@
 </head>
 <body>
 
-	<div class="container-fluid h-100 pt-5 d-flex flex-column align-items-center align-content-around">
-		<h1 class="text-center"><span class="fas fa-user-secret fa-fw fa-lg"></span> Welcome to the</h1>
-		<h1 class="text-center pb-3">Unveil IP web page!</h1>
+	<div class="container-fluid h-100 pt-4 d-flex flex-column align-items-center align-content-around">
+		<h2 class="text-center mb-4"><span class="fas fa-user-secret fa-fw fa-lg"></span> Welcome to the Unveil IP web page!</h2>
+		<!-- The map area -->
+		<div id="map"></div>
 
-		<ul class="data pb-2">
-			<li font-weight-light>IP:  <span class="ip font-weight-light"></span></li>  
-			<li>Country Code:  <span class="ccode"></span></li>  
-			<li>Country Name:  <span class="cname"></span></li>  
-			<li>Region:  <span class="region"></span></li>  
-			<li>City:  <span class="city"></span></li> 
-			<li>Latitude:  <span class="lati"></span></li>
-			<li>Longitude: <span class="longi"></span></li>  
-			<li>Zip Code:  <span class="zip"></span></li>
-			<li>Time Zone:  <span class="time"></span></li> 
-			<li>From:  <span class="from"></span></li>
-			<li>To:  <span class="to"></span></li>
-		</ul>
-		
-		<div class="ip-numbers">
-			<label>Type the IP here:</label>    
-		<input type="text" maxlength="3" id="ip01" class="ip-element text-center" />.    
-		<input type="text" maxlength="3" id="ip02" class="ip-element text-center" />.    
-		<input type="text" maxlength="3" id="ip03" class="ip-element text-center" />.    
-		<input type="text" maxlength="3" id="ip04" class="ip-element text-center" />    
+		<!-- Leaflet JavaScript -->
+		<script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+		<!-- Our Key to Leaflet -->
+		<script src="./public/js/config.js"></script>
+
+		<div class="ip-numbers mt-3">
+			<label>Type the IP here:</label> 
+		    <input type="text" maxlength="3" id="ip01" class="ip-element text-center" value="198"/>.    
+		    <input type="text" maxlength="3" id="ip02" class="ip-element text-center" value="55"/>.    
+		    <input type="text" maxlength="3" id="ip03" class="ip-element text-center" value="49"/>.    
+		    <input type="text" maxlength="3" id="ip04" class="ip-element text-center" value="89"/>    
 		</div> 
 
 		<span class="text-center w-100 pb-3" id="error-msg"></span>
