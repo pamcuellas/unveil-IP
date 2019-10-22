@@ -28,13 +28,13 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 			$("#error-msg").attr("style","color:red");
 			$("#error-msg").html("Invalid IP number [ " + getCurrIP() +  " ]");
 		}
-		$("document").focus(); 		
+		$("#ip01").blur();   		
 		$("#ip01").focus();   		
 	});
 
 	// function to process new IP location
-	let setNewLocation =  result => {
-
+	let setNewLocation = ( result ) => {
+		
 		// Get the coordinates 
 		let coordinates = [ result.latitude,  result.longitude ];
 
@@ -54,8 +54,8 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 				fillColor: 'purple',
 				radius: 50000
 			} ).bindPopup( 
-							"<h5>City: " + result.city_name + "</h5>" +
-							"<hr>" +
+							"<h6 style='font-weight: bold; text-align:center;'>" + result.city_name + "</h6>" +
+							"<hr style='margin: 2px'>" +
 							"<span>Country: " + result.country_code + " - "  + result.country_name + "</span><br>" +
 							"<span>Region: " + result.region_name + "</span><br>" + 
 							"<span>Zip code: " + result.zip_code + "</span><br>"  +
