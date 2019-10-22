@@ -8,13 +8,15 @@ body{
 	color: #e5ccff;
 }
 
-li {
-	color: #e5ccff;
-}
-
-li span {
-	color: white ;
-}
+#map {
+	width: 70%;
+	height: 500px;
+	position: relative;
+	margin:0;
+	padding:0; 
+	border: none;
+	border-radius: 8px;
+  }
 
 .container {
 	height: 90%;
@@ -38,7 +40,6 @@ li span {
 	outline: none;
 	color: #cecece; 
 	width: 40px;    
-
 }
 .ip-numbers {
 	border: none;
@@ -76,15 +77,24 @@ li span {
 	color: #e5ccff;
 }
 
-div {    
-	border: 1px solid gray;    
-	display: inline-block;    
-}  
+
+@media screen and (max-width: 1000px) {
+	
+	#map {
+		width: 90%!important;
+	} 
+
+
+}
 
 @media screen and (max-width: 450px) {
+
+	#map {
+		width: 100%!important;
+	} 
 	
-	h1 {
-		font-size: 1.6em;
+	h2 {
+		font-size: 1.2em;
 	} 
 
 	.ip2location {
