@@ -2,17 +2,24 @@
 /*******************************************************************************/
 $(document).ready( function(){ 	// Wait until DOM be ready to start.
 
+// Global variables
 let ipToSearch= "";
+let ipMark = [];
+const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toronto Coordinates.
 
+	// Event to search IP location
 	$('#btn').on("click", () => {
+
+		// Check if IP is valid
 		if (checkIPs()) {
 			ipToSearch = getCurrIP();
 			clearFields();
 			$("#error-msg").attr("style","color:#1e90ff");
 			$("#error-msg").html("Searching IP " + ipToSearch + " ...");
+			// Run our small REST to get the IP Location
 			$.post("/search/ip", { ip: ipToSearch })
 			.then( (data) => {
-				fillLis( data[0] );
+				setNewLocation( data[0] );
 			})
 			.catch( (error) => {
 				console.log(error);
@@ -21,43 +28,68 @@ let ipToSearch= "";
 			$("#error-msg").attr("style","color:red");
 			$("#error-msg").html("Invalid IP number [ " + getCurrIP() +  " ]");
 		}
+		$("#ip01").focus();   		
 	});
 
-	let fillLis =  result => {
-		$(".ip"		).text(ipToSearch);
-		$(".ccode"	).text(result.country_code); 
-		$(".cname"	).text(result.country_name); 
-		$(".region" ).text(result.region_name); 
-		$(".city"	).text(result.city_name); 
-		$(".lati"	).text(result.latitude); 
-		$(".longi"	).text(result.longitude); 
-		$(".zip"	).text(result.zip_code); 
-		$(".time"	).text(result.time_zone); 
-		$(".from"	).text(result.ip_from); 
-		$(".to"		).text(result.ip_to);
-		$("#error-msg").html("");
-		$("#error-msg").attr("style","color:#e8a0b7");
-		$("#ip01").focus();   
-	}
+	// function to process new IP location
+	let setNewLocation =  result => {
 
+		// Get the coordinates 
+		let coordinates = [ result.latitude,  result.longitude ];
+
+		// Check if database returned a valid coordinate.
+		if (coordinates[0] != 0 || coordinates[1] != 0) {
+
+			// Clear error msg field
+			$("#error-msg").html("");
+			$("#error-msg").attr("style","color:#e8a0b7");
+
+			// Fill the mark variable with data
+			ipMark.push(  L.circle(coordinates, {
+				stroke: true,
+				fillOpacity: 0.7,
+				weight: 1,
+				color: "white",
+				fillColor: 'purple',
+				radius: 50000
+			} ).bindPopup( 
+							"<h5>City: " + result.city_name + "</h5>" +
+							"<hr>" +
+							"<span>Country: " + result.country_code + " - "  + result.country_name + "</span><br>" +
+							"<span>Region: " + result.region_name + "</span><br>" + 
+							"<span>Zip code: " + result.zip_code + "</span><br>"  +
+							"<span>Coordinates: " + coordinates[0] + ", " + coordinates[1] + "</span><br>"  +
+							"<span>Time Zone: " + result.time_zone + "</span><br>"  +
+							"<span>IP searched: " + ipToSearch + "</span><br>"  + 
+							"<span>From: " + result.zip_code + "</span><br>"  + 
+							"<span>To: " + result.ip_to + "</span>"  
+						)
+			);		
+
+			// Create the layer for IP marks
+			let ipLayer = L.layerGroup(ipMark);
+
+			// Add layears to the map;
+			ipLayer.addTo( vMap );	
+
+			// vMap.setView(new L.LatLng(coordinates), 8);
+			vMap.flyTo(coordinates, 5);
+		} else{
+			// IP not found
+			$("#error-msg").attr("style","color:red");
+			$("#error-msg").html("Sorry! The IP " + ipToSearch + " does not exist in our database!");
+		}
+	};
+
+	// Clear IP fields
 	let clearFields = ( ) => {
-		$(".ip"		).text("");
-		$(".ccode"	).text(""); 
-		$(".cname"	).text(""); 
-		$(".region" ).text(""); 
-		$(".city"	).text(""); 
-		$(".lati"	).text(""); 
-		$(".longi"	).text(""); 
-		$(".zip"	).text(""); 
-		$(".time"	).text(""); 
-		$(".from"	).text(""); 
-		$(".to"		).text(""); 
 		$("#ip01"	).val("");
 		$("#ip02"	).val("");
 		$("#ip03"	).val("");
 		$("#ip04"	).val(""); 
-	}
+	};
 
+	// Event to check if the typed IP number is right
 	$(".ip-element").keyup(function ( ) { 
 		var keycode = (event.keyCode ? event.keyCode : event.which);   
 		if ((this.value.length == this.maxLength) || (keycode == '13' && this.value.length != 0)) {    
@@ -75,6 +107,7 @@ let ipToSearch= "";
 		}    
 	});  
 
+	// Check the intire IP number
 	let checkIPs = () => {
 		let result = true;
 		for (i=1; i<5; i++) {
@@ -85,8 +118,9 @@ let ipToSearch= "";
 			}
 		}
 		return result;
-	}	
+	};
 
+	// Check if each part of IP number is valid
   	let checkIP  =  value  => {
 		let numbers = /^[0-9]+$/;
 		if( value.match(numbers) || value.length == 0 )
@@ -96,16 +130,77 @@ let ipToSearch= "";
 			}
 		} 
 		return false;
-	}
+	};
 
+	// Get the current IP
 	let getCurrIP = () => {  
 			let ip  = $('#ip01').val() + "." + $('#ip02').val()  + "." + $('#ip03').val() + "." + $('#ip04').val(); 
 			ip = ip.replace("...","").replace("..","");
 			return ip;
 		};
 
-	$("#ip01").focus();   		
+	// Create the map
+	var vMap = L.map("map", {
+		center: torontoCoordinates, 
+		zoom: 10
+	});
+	
+	// Define maps styles
+	var streetmap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+		attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+		maxZoom: 18,
+		id: "mapbox.streets",
+		accessToken: API_KEY
+	}).addTo( vMap ); // Add a basemap
+
+	var satellite = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+		attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+		maxZoom: 18,
+		id: "satellite-streets-v9",
+		accessToken: API_KEY
+	});
+	
+	var light = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+		attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+		maxZoom: 18,
+		id: "light-v9",
+		accessToken: API_KEY
+	});
+	
+	var outdoors = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+		attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+		maxZoom: 18,
+		id: "outdoors-v9",
+		accessToken: API_KEY
+	});
+	
+	var dark = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+		attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+		maxZoom: 18,
+		id: "dark-v9",
+		accessToken: API_KEY
+	});
 
 
+	// Map styles options to appear in the control box.
+	let basemapControl = {
+		"Streets": streetmap,
+		"Satellite": satellite,
+		"Grayscale": light,
+		"Outdoors": outdoors,
+		"Dark Map": dark
+	};
+
+	// Add the control component, a layer list with checkboxes for operational layers and radio buttons for basemaps
+	L.control.layers( basemapControl, null ).addTo( vMap );
+
+	// Function to start the page 
+	init = () => {
+		$( "#btn" ).trigger( "click" );
+		$("#ip01").focus();	
+	};
+
+	// Start the page with Toronto IP.
+	init();
 });
 
