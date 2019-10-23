@@ -28,8 +28,7 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 			$("#error-msg").attr("style","color:red");
 			$("#error-msg").html("Invalid IP number [ " + getCurrIP() +  " ]");
 		}
-		$("#ip01").blur();   		
-		// $("#ip01").focus();   		
+		$("#error-msg").focus();
 	});
 
 	// function to process new IP location
