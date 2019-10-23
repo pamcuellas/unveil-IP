@@ -39,7 +39,7 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 		// Check if database returned a valid coordinate.
 		if (coordinates[0] != 0 || coordinates[1] != 0) {
 
-			// Clear error msg field
+			// Clear message field
 			$("#message").html("");
 			$("#message").attr("style","color:#e8a0b7");
 
@@ -54,7 +54,7 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 			"<span>IP searched: " + ipToSearch + "</span><br>"  + 
 			"<span>From/To: " + result.ip_from + "/" + result.ip_to + "</span>";
 
-			// Fill the mark variable with data
+			// Create a circle for IP Location
 			ipLocation.push(  L.circle(coordinates, {
 				stroke: true,
 				fillOpacity: 0.7,
@@ -65,7 +65,7 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 			} ).bindPopup(popupText)
 			);		
 
-			// Create the layer for IP marks
+			// Create the layer for IP location
 			let ipLayer = L.layerGroup(ipLocation);
 
 			// Add layears to the map;
@@ -77,8 +77,11 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 			// Create a popup to show up automatically
 			var popup = L.popup()
 			.setLatLng(coordinates)
-			.setContent(popupText).openOn(vMap);
-
+			.setContent(popupText);
+			
+			// Wait 2.6 seconds to present info
+			setTimeout( () => { popup.openOn(vMap); }, 2500 );
+			
 		} else{
 			// IP not found
 			$("#message").attr("style","color:red");
@@ -113,7 +116,7 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 		}    
 	});  
 
-	// Check the intire IP number
+	// Check the full IP number
 	let checkIPs = () => {
 		let result = true;
 		for (i=1; i<5; i++) {
@@ -187,7 +190,6 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 		accessToken: API_KEY
 	});
 
-
 	// Map styles options to appear in the control box.
 	let basemapControl = {
 		"Streets": streetmap,
@@ -199,8 +201,6 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 
 	// Add the control component, a layer list with checkboxes for operational layers and radio buttons for basemaps
 	L.control.layers( basemapControl, null ).addTo( vMap );
-
-
 
 	// Function to start the page 
 	init = () => {
