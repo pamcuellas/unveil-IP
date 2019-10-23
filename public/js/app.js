@@ -29,7 +29,7 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 			$("#error-msg").html("Invalid IP number [ " + getCurrIP() +  " ]");
 		}
 		$("#ip01").blur();   		
-		$("#ip01").focus();   		
+		// $("#ip01").focus();   		
 	});
 
 	// function to process new IP location
@@ -198,7 +198,7 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 	// Function to start the page 
 	init = () => {
 		$( "#btn" ).trigger( "click" );
-		$("#ip01").focus();	
+		// $("#ip01").focus();	
 	};
 
 	// Start the page with Toronto IP.
