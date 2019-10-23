@@ -98,9 +98,8 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 				if ($(this).index() != 4 ){
 					$(this).next('.ip-element').focus();   
 				} else if (keycode == '13') {  
-					$( "#error-msg" ).focus();
+					$(this).next('.ip-element').focusout();   
 					$( "#btn" ).trigger( "click" );
-					// $("#btn").click();
 				}
 			} else {
 				$("#error-msg").html("Invalid IP number [ " + getCurrIP() +  " ]");
