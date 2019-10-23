@@ -83,10 +83,10 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 
 	// Clear IP fields
 	let clearFields = ( ) => {
-		$("#ip01"	).val("");
-		$("#ip02"	).val("");
-		$("#ip03"	).val("");
-		$("#ip04"	).val(""); 
+		$("#ip01").val("");
+		$("#ip02").val("");
+		$("#ip03").val("");
+		$("#ip04").val(""); 
 	};
 
 	// Event to check if the typed IP number is right
@@ -98,8 +98,8 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 				if ($(this).index() != 4 ){
 					$(this).next('.ip-element').focus();   
 				} else if (keycode == '13') {  
-					$(this).next('.ip-element').focusout();   
-					$( "#btn" ).trigger( "click" );
+					$('#btn').focus();   
+					$("#btn").trigger( "click" );
 				}
 			} else {
 				$("#error-msg").html("Invalid IP number [ " + getCurrIP() +  " ]");
