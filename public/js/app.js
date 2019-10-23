@@ -5,7 +5,7 @@ $(document).ready( function(){ 	// Wait until DOM be ready to start.
 // Global variables
 let ipToSearch= "";
 let ipLocation = [];
-const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toronto Coordinates.
+const torontoCoordinates = [40.651070, -79.347015]; // Start the map with Toronto Coordinates.
 
 	// Event to search IP location
 	$('#btn').on("click", () => {
@@ -36,6 +36,7 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 		// Get the coordinates 
 		let coordinates = [ result.latitude,  result.longitude ];
 
+		
 		// Check if database returned a valid coordinate.
 		if (coordinates[0] != 0 || coordinates[1] != 0) {
 
@@ -71,8 +72,11 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 			// Add layears to the map;
 			ipLayer.addTo( vMap );	
 
+			// Coordinates for Map
+			let mapCoordinates = [coordinates[0]  + 4, coordinates[1]];
+
 			// Send the map to coordinates
-			vMap.flyTo(coordinates, 5);
+			vMap.flyTo(mapCoordinates, 5);
 
 			// Create a popup to show up automatically
 			var popup = L.popup()
