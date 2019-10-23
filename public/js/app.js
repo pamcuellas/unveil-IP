@@ -4,7 +4,7 @@ $(document).ready( function(){ 	// Wait until DOM be ready to start.
 
 // Global variables
 let ipToSearch= "";
-let ipMark = [];
+let ipLocation = [];
 const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toronto Coordinates.
 
 	// Event to search IP location
@@ -43,36 +43,43 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 			$("#error-msg").html("");
 			$("#error-msg").attr("style","color:#e8a0b7");
 
+			// Define a popup text to show up
+			const popupText = "<h6 style='font-weight: bold; text-align:center;'>" + result.city_name + "</h6>" +
+			"<hr style='margin: 2px'>" +
+			"<span>Country: " + result.country_code + " - "  + result.country_name + "</span><br>" +
+			"<span>Region: " + result.region_name + "</span><br>" + 
+			"<span>Zip code: " + result.zip_code + "</span><br>"  +
+			"<span>Coordinates: " + coordinates[0] + ", " + coordinates[1] + "</span><br>"  +
+			"<span>Time Zone: " + result.time_zone + "</span><br>"  +
+			"<span>IP searched: " + ipToSearch + "</span><br>"  + 
+			"<span>From: " + result.zip_code + "</span><br>"  + 
+			"<span>To: " + result.ip_to + "</span>";
+
 			// Fill the mark variable with data
-			ipMark.push(  L.circle(coordinates, {
+			ipLocation.push(  L.circle(coordinates, {
 				stroke: true,
 				fillOpacity: 0.7,
 				weight: 2,
 				color: "purple",
 				fillColor: '#ff1d59',
 				radius: 50000
-			} ).bindPopup(
-							"<h6 style='font-weight: bold; text-align:center;'>" + result.city_name + "</h6>" +
-							"<hr style='margin: 2px'>" +
-							"<span>Country: " + result.country_code + " - "  + result.country_name + "</span><br>" +
-							"<span>Region: " + result.region_name + "</span><br>" + 
-							"<span>Zip code: " + result.zip_code + "</span><br>"  +
-							"<span>Coordinates: " + coordinates[0] + ", " + coordinates[1] + "</span><br>"  +
-							"<span>Time Zone: " + result.time_zone + "</span><br>"  +
-							"<span>IP searched: " + ipToSearch + "</span><br>"  + 
-							"<span>From: " + result.zip_code + "</span><br>"  + 
-							"<span>To: " + result.ip_to + "</span>"  
-						)
+			} ).bindPopup(popupText)
 			);		
 
 			// Create the layer for IP marks
-			let ipLayer = L.layerGroup(ipMark);
+			let ipLayer = L.layerGroup(ipLocation);
 
 			// Add layears to the map;
 			ipLayer.addTo( vMap );	
 
-			// vMap.setView(new L.LatLng(coordinates), 8);
+			// Send the map to coordinates
 			vMap.flyTo(coordinates, 5);
+
+			// Create a popup to show up automatically
+			var popup = L.popup()
+			.setLatLng(coordinates)
+			.setContent(popupText).openOn(vMap);
+
 		} else{
 			// IP not found
 			$("#error-msg").attr("style","color:red");
@@ -193,6 +200,8 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 
 	// Add the control component, a layer list with checkboxes for operational layers and radio buttons for basemaps
 	L.control.layers( basemapControl, null ).addTo( vMap );
+
+
 
 	// Function to start the page 
 	init = () => {
