@@ -8,4 +8,5 @@ JSON, Ajax, jQuery, HTML, Bootstrap, Fontawesome, Heroku hosting the webpage, an
 ### This SPA is available online on the URL below.
 https://seek-ip.herokuapp.com
 
-
+### Below you can see a screenshot of the SPA: 
+<img src="https://pamcuellas.github.io/assets/images/unveilip-screenshot.png" width="500"/>
