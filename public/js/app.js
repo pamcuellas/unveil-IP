@@ -14,8 +14,8 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 		if (checkIPs()) {
 			ipToSearch = getCurrIP();
 			clearFields();
-			$("#error-msg").attr("style","color:#1e90ff");
-			$("#error-msg").html("Searching IP " + ipToSearch + " ...");
+			$("#message").attr("style","color:#1e90ff");
+			$("#message").html("Searching IP " + ipToSearch + " ...");
 			// Run our small REST to get the IP Location
 			$.post("/search/ip", { ip: ipToSearch })
 			.then( (data) => {
@@ -25,8 +25,8 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 				console.log(error);
 			});
 		} else {
-			$("#error-msg").attr("style","color:red");
-			$("#error-msg").html("Invalid IP number [ " + getCurrIP() +  " ]");
+			$("#message").attr("style","color:red");
+			$("#message").html("Invalid IP number [ " + getCurrIP() +  " ]");
 		}
 	});
 
@@ -40,8 +40,8 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 		if (coordinates[0] != 0 || coordinates[1] != 0) {
 
 			// Clear error msg field
-			$("#error-msg").html("");
-			$("#error-msg").attr("style","color:#e8a0b7");
+			$("#message").html("");
+			$("#message").attr("style","color:#e8a0b7");
 
 			// Define a popup text to show up
 			const popupText = "<h6 style='font-weight: bold; text-align:center;'>" + result.city_name + "</h6>" +
@@ -82,8 +82,8 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 
 		} else{
 			// IP not found
-			$("#error-msg").attr("style","color:red");
-			$("#error-msg").html("Sorry! The IP " + ipToSearch + " does not exist in our database!");
+			$("#message").attr("style","color:red");
+			$("#message").html("Sorry! The IP " + ipToSearch + " does not exist in our database!");
 		}
 	};
 
@@ -100,7 +100,7 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 		var keycode = (event.keyCode ? event.keyCode : event.which);   
 		if ((this.value.length == this.maxLength) || (keycode == '13' && this.value.length != 0)) {    
 			if(checkIPs()) { 
-				$("#error-msg").html("");
+				$("#message").html("");
 				if ($(this).index() != 4 ){
 					$(this).next('.ip-element').focus();   
 				} else if (keycode == '13') {  
@@ -108,7 +108,7 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 					$("#btn").trigger("click");
 				}
 			} else {
-				$("#error-msg").html("Invalid IP number [ " + getCurrIP() +  " ]");
+				$("#message").html("Invalid IP number [ " + getCurrIP() +  " ]");
 				$(this).html("");
 			}
 		}    
