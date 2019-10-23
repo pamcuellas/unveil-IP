@@ -36,7 +36,6 @@ const torontoCoordinates = [40.651070, -79.347015]; // Start the map with Toront
 		// Get the coordinates 
 		let coordinates = [ result.latitude,  result.longitude ];
 
-		
 		// Check if database returned a valid coordinate.
 		if (coordinates[0] != 0 || coordinates[1] != 0) {
 
