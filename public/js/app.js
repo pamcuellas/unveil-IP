@@ -52,8 +52,7 @@ const torontoCoordinates = [43.651070, -79.347015]; // Start the map with Toront
 			"<span>Coordinates: " + coordinates[0] + ", " + coordinates[1] + "</span><br>"  +
 			"<span>Time Zone: " + result.time_zone + "</span><br>"  +
 			"<span>IP searched: " + ipToSearch + "</span><br>"  + 
-			"<span>From: " + result.zip_code + "</span><br>"  + 
-			"<span>To: " + result.ip_to + "</span>";
+			"<span>From/To: " + result.ip_from + "/" + result.ip_to + "</span>";
 
 			// Fill the mark variable with data
 			ipLocation.push(  L.circle(coordinates, {
