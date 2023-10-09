@@ -6,6 +6,5 @@ Node.js with modules body-parser, cors, dotenv, express, express-sanitizer, pass
 Leaflet, JSON, Ajax, jQuery, HTML, Bootstrap, Fontawesome, Heroku hosting the webpage, and DigitalOcean hosting the MySQL database.
 
 ### This SPA is available online on the URL below.
-https://seek-ip.herokuapp.com
-
+https://unveil-ip-production.up.railway.app/
 
