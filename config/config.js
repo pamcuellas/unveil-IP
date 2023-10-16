@@ -12,7 +12,7 @@ CONFIG.db.port      		= process.env.DB_PORT;
 CONFIG.db.database  		= process.env.DB_NAME;
 CONFIG.db.user      		= process.env.DB_USER;
 CONFIG.db.password  		= process.env.DB_PASSWORD;   
-//CONFIG.db.connectTimeout	= process.env.DB_TIMEOUT;
+CONFIG.db.connectTimeout	= process.env.DB_TIMEOUT;
 
 
 
