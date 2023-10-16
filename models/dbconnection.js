@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 /* DATABASE */
-const CONFIG = require('./config/config');
+const CONFIG = require('../config/config');
 const mysql = require('mysql2');
 const connection = mysql.createConnection(CONFIG.db);
 connection.connect(err => {
@@ -8,7 +8,9 @@ connection.connect(err => {
     console.error('An error occurred while connecting to the DB');
     throw err;
   }
-  console.log("Connected to the database " + CONFIG.db.database);
+  console.log("Connected to the host " + CONFIG.db.host);
+  //console.log("Connected to the database " + CONFIG.db.database);
+
 });
 const ip = 876814380;
 connection.query('SELECT * FROM iplist WHERE  ? BETWEEN ip_from AND ip_to', [ip], (error, result, fields) => {
