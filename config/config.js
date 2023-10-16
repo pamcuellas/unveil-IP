@@ -3,7 +3,7 @@ require('dotenv').config();//instatiate environment variables
 
 let CONFIG = { app:{}, db:{} }; //Make this global to use all over the application
 
-CONFIG.app.app      		= process.env.APP || '0.0.0.0';
+CONFIG.app.app      		= '0.0.0.0'; //process.env.APP || '0.0.0.0';
 CONFIG.app.port     		= process.env.PORT;
 CONFIG.dialect      		= process.env.DB_DIALECT;
 		
