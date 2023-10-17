@@ -12,7 +12,8 @@ connection.connect(err => {
     console.error('An error occurred while connecting to the DB', err);
     throw err;
   }
-  console.log("Connected to the database ==> " + CONFIG.db.database);
+  console.log("Connected to the host ==> " + CONFIG.db.host);
+  //console.log("Connected to the database ==> " + CONFIG.db.database);
 });
 
 module.exports = connection;
