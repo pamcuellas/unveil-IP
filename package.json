@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "API to provide information about an IP\u001b[D\u001b[Dspecific IP",
   "main": "app.js",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
