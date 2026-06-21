@@ -34,7 +34,8 @@ var Iplist = {
             res.send(result);
         }, 
         function(err) {
-            res.send(err);
+            console.error('Query error:', err);
+            res.status(500).send({ error: 'An error occurred while processing your request.' });
         });
     }
 };

@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 const express 		= require('express');
 const bodyParser 	= require('body-parser');
+const rateLimit		= require('express-rate-limit');
 const app   		= express();
 app.use("/public", express.static('public')); 
 // Test DB connection.      
@@ -16,7 +17,13 @@ app.get( '/', function(req, res, next) {
 	res.sendFile("./views/index.html");
 });
 
-app.post('/search/ip', ipList.getIPfields);
+const searchLimiter = rateLimit({
+	windowMs: 60 * 1000,
+	max: 30,
+	message: { error: 'Too many requests, please try again later.' }
+});
+
+app.post('/search/ip', searchLimiter, ipList.getIPfields);
 
 
 app.listen(process.env.PORT, process.env.IP, function(){

@@ -22,10 +22,9 @@
     "cors": "^2.8.5",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
+    "express-rate-limit": "^8.5.2",
     "express-sanitizer": "^1.0.5",
-    "mysql2": "^1.7.0",
-    "nodemon": "^3.0.1",
-    "passport": "^0.6.0",
-    "sequelize": "^6.33.0"
+    "mysql2": "^3.22.5",
+    "nodemon": "^3.0.1"
   }
 }
